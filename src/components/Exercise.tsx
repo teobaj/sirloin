@@ -1,9 +1,9 @@
 import { Button, Card, CardContent, CardHeader, Chip } from "@mui/material"
-import { Exercise as ExerciseProps } from "../types/exercise.types"
+import { Exercise as ExerciseProps } from "../features/exercises/exercises.model"
 
 const getButtonName = (completed: boolean) => completed ? 'Restart' : 'Complete'
 
-export const Exercise = ({exercise, onToggle, onDelete}:{exercise:ExerciseProps, onToggle?:Function, onDelete?: Function}) => {
+export const Exercise = ({exercise, onToggle, onDelete}:{exercise:ExerciseProps, onToggle?:any, onDelete?: any}) => {
   const styles = {
     card: {
       width: 'clamp(280px, 100%, 380px)'
@@ -34,7 +34,7 @@ export const Exercise = ({exercise, onToggle, onDelete}:{exercise:ExerciseProps,
         <ul style={styles.list}>
           {exercise.sets.map((set, index) => <Chip label={set} key={index}></Chip>) }
         </ul>
-        <Button variant="contained" onClick={() => onToggle(exercise.name)}>{getButtonName(exercise.completed)}</Button>
+        <Button variant="contained" onClick={onToggle}>{getButtonName(exercise.completed)}</Button>
       </CardContent>
     </Card>
   )
