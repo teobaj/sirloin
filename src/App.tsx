@@ -6,13 +6,24 @@ import { reducer } from "./reducer";
 import { AppState } from "./types/state.types";
 import { Router } from "./Router";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "./features/user/user.slice";
+import { login, userSelector } from "./features/user/user.slice";
 import { TopBar } from "./components/TopBar";
+import { exercisesSelector } from "./features/exercises/exercises.slice";
 
 
 function App() {
-  const user = useSelector((state: AppState) => state.user)
+  const user = useSelector(userSelector)
+  const exercises = useSelector(exercisesSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }, [user])
+
+  useEffect(() => {
+    localStorage.setItem('exercises', JSON.stringify(exercises))
+  }, [exercises])
+
   return (
     <div className="App">
       <header>

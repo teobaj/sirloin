@@ -1,6 +1,7 @@
 import { Button, Input, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../features/user/user.slice";
 
 const styles = {
@@ -12,6 +13,12 @@ const styles = {
 export const Login = () => {
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    dispatch(login({username}))
+    navigate('/')
+  }
+
   return (
     <div className="page center">
       <TextField
@@ -21,10 +28,10 @@ export const Login = () => {
         variant="outlined"
         style={styles.shared}
       />
-      <Button onClick={() => dispatch(login({username}))} style={styles.shared} variant="contained">
+      <Button onClick={handleLogin} style={styles.shared} variant="contained">
         Login
       </Button>
-      <Button onClick={() => dispatch(login({}))} style={styles.shared} variant="outlined">
+      <Button onClick={handleLogin} style={styles.shared} variant="outlined">
         Continue as Guest
       </Button>
     </div>

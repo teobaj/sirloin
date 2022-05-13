@@ -8,11 +8,14 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
-import { useSelector } from "react-redux";
-import { userSelector } from "../features/user/user.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, userSelector } from "../features/user/user.slice";
+import { useNavigate } from "react-router-dom";
 
 export const TopBar = () => {
   const user = useSelector(userSelector)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -30,6 +33,10 @@ export const TopBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {user.isLoggedIn ? user.username : ''}
           </Typography>
+          {user.isLoggedIn 
+            ? <Button onClick={() => dispatch(logout())} color="inherit">Logout</Button>
+            : <Button onClick={() => navigate('/login')} color="inherit">Login</Button>
+          }
         </Toolbar>
       </AppBar>
     </Box>

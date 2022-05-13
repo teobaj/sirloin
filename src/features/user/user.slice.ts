@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../../types/state.types";
 import { User } from "./user.model";
 
+const initialState: User = JSON.parse(localStorage.getItem('user')) || { isLoggedIn: false }
+
 export const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    isLoggedIn: false,
-  } as User,
+  initialState: initialState,
   reducers: {
     login: (_, action: PayloadAction<Partial<User>>) =>({...action.payload, isLoggedIn: true}),
     logout: () => ({isLoggedIn: false})

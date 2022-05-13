@@ -17,7 +17,7 @@ export const exercisesSlice = createSlice({
   },
 });
 
-export const { addExercise, toggleExercise } = exercisesSlice.actions
+export const { addExercise, toggleExercise, deleteExercise } = exercisesSlice.actions
 
 export default exercisesSlice.reducer
 
