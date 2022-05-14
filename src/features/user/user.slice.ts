@@ -9,11 +9,12 @@ export const userSlice = createSlice({
   initialState: initialState,
   reducers: {
     login: (_, action: PayloadAction<Partial<User>>) =>({...action.payload, isLoggedIn: true}),
-    logout: () => ({isLoggedIn: false})
+    logout: () => ({isLoggedIn: false}),
+    addLastWourkout: (state, action: PayloadAction<string>) => ({...state, lastWorkoutDate: action.payload})
   }
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, addLastWourkout } = userSlice.actions
 
 export default userSlice.reducer
 

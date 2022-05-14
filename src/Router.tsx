@@ -6,6 +6,7 @@ import { isLoggedInSelector } from './features/user/user.slice'
 import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
 import { SignUp } from './pages/SignUp'
+import { Progress } from './pages/Progress'
 
 export const Router = () => {
   const canAccess = useSelector(isLoggedInSelector)
@@ -18,7 +19,8 @@ export const Router = () => {
       } />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-
+      <Route path="/dashboard" element={<Dashboard />}></Route>
+      <Route path="/progress" element={<Progress/>}/>
     </Routes>
   )
 }

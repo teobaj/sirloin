@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, userSelector } from "../features/user/user.slice";
 import { useNavigate } from "react-router-dom";
 
-export const TopBar = () => {
+export const TopBar = ({onMenuClick}) => {
   const user = useSelector(userSelector)
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export const TopBar = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={onMenuClick}
           >
             <MenuIcon />
           </IconButton>

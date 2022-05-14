@@ -1,4 +1,5 @@
 export type User = {
   isLoggedIn: boolean,
-  username?: string
+  username?: string,
+  lastWorkoutDate?: string,
 }

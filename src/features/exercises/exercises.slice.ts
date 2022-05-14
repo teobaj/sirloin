@@ -13,11 +13,12 @@ export const exercisesSlice = createSlice({
   reducers: {
     addExercise: (state, action: PayloadAction<Exercise>) => ([...state, action.payload]),
     toggleExercise: (state, action: PayloadAction<number>) => state.map((exercise, index) => index === action.payload ? {...exercise, completed: !exercise.completed} : exercise),
-    deleteExercise: (state, action: PayloadAction<number>) => state.filter((_, index) => index !== action.payload)
+    deleteExercise: (state, action: PayloadAction<number>) => state.filter((_, index) => index !== action.payload),
+    resetAllExercises: (state) => state.map((exercise) => ({...exercise, completed: false}))
   },
 });
 
-export const { addExercise, toggleExercise, deleteExercise } = exercisesSlice.actions
+export const { addExercise, toggleExercise, deleteExercise, resetAllExercises } = exercisesSlice.actions
 
 export default exercisesSlice.reducer
 

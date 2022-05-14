@@ -14,7 +14,8 @@ const styles = {
 
 export const Dashboard = () => {
   return (
-    <div className="page" style={styles.page as any}>Dashboard
+    <div className="page" style={styles.page as any}>
+      <h3>Workout</h3>
       <ExerciseList />
       <AddExercise />
     </div>
