@@ -1,22 +1,14 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { Exercise } from "./components/Exercise";
-import { AddExercise } from "./components/AddExercise";
-import { reducer } from "./reducer";
-import { AppState } from "./types/state.types";
 import { Router } from "./Router";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addLastWourkout,
-  login,
   userSelector,
 } from "./features/user/user.slice";
 import { TopBar } from "./components/TopBar";
 import {
-  exercisesSelector,
-  resetAllExercises,
+  exercisesSelector, resetAllExercises,
 } from "./features/exercises/exercises.slice";
-import { User } from "./features/user/user.model";
 import { Workout } from "./features/workout/workout.types";
 import {
   addDoneWorkout,
@@ -78,6 +70,13 @@ function App() {
   }, [exercises]);
 
   useEffect(() => {
+    const currentDate = new Date().toLocaleDateString();
+    if(currentDate !== workout.lastWorkoutDate) {
+        dispatch(resetAllExercises())
+      }
+    },[workout.lastWorkoutDate])
+
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
@@ -96,14 +95,6 @@ function App() {
       </header>
       <Router />
       <Menu open={openMenu} onMenuClick={toggleMenu}/>
-      {/* <AddExercise onSave={addExercise}/>
-      <ul style={{...styles.ul, flexDirection: 'column'}}>
-
-      {state.exercises.map((exercise, index) => 
-        <Exercise onToggle={toggleComplete} onDelete={deleteExercise} key={index} exercise={exercise}/>
-        )}
-
-      </ul> */}
       <SuccessAlert/>
     </div>
   );
