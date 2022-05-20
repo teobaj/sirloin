@@ -4,6 +4,7 @@ import {
   deleteExercise,
   exercisesSelector,
   toggleExercise,
+  upgradeExercise,
 } from "../features/exercises/exercises.slice";
 import { Exercise } from "./Exercise";
 
@@ -26,6 +27,7 @@ export const ExerciseList = () => {
         <Exercise
           onToggle={() => dispatch(toggleExercise(index))}
           onDelete={() => dispatch(deleteExercise(index))}
+          onUpgrade={() => dispatch(upgradeExercise(index))}
           key={index}
           exercise={exercise}
         />
